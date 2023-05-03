@@ -7,19 +7,16 @@ package psv;
 import java.sql.*;
 import java.util.*;
 
-
 public class Teste {
-    public static void main(String[] args){
-        Connection con = Conexao.abrirConexao();
-        
-        CarroBean cb = new CarroBean();
-        CarroDAO cd = new CarroDAO(con);
-        
-        cb.setPlaca("JKK1900");
-        cb.setCor("Azul");
-        cb.setDescricao("Carro 1");
-        System.out.println(cd.inserir(cb));
-        
+   public static void main(String[] args) { 
+ Connection con = Conexao.abrirConexao(); 
+ CarroBean cb = new CarroBean(); 
+ CarroDAO cd = new CarroDAO(con); 
+ //Testando método inserir 
+  cb.setPlaca("JKL2897"); 
+ cb.setCor("Verde"); 
+ cb.setDescricao("Carro 3"); 
+ System.out.println(cd.inserir(cb));
     }
+    
 }
-

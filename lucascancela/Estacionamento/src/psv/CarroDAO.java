@@ -19,74 +19,74 @@ public class CarroDAO {
         this.con = con;
     }
     public String inserir(CarroBean carro){
-        String sql =
+        String sql = 
                 "insert into carro(placa, cor, descricao) values(?, ?, ?)";
         try{
-            PreparedStatement ps = getCon().prepareStatement(sql); 
+            PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setString(1, carro.getPlaca());
             ps.setString(2, carro.getCor());
             ps.setString(3, carro.getDescricao());
             
-            if (ps.executeUpdate() > 0){
-                return "Inserido com sucesso.";
-            }
-            else {
+            if(ps.executeUpdate() > 0){
+                return "Inserido com sucesso";
+            }else{
                 return "erro ao inserir";
             }
+        
         }catch(SQLException e){
             return e.getMessage();
         }
     }
     public String alterar(CarroBean carro){
         String sql = "update carro set cor = ?, descricao = ?";
-        sql += "where placa = ?";
+        sql += " where placa = ?";
         
         try{
             PreparedStatement ps = getCon().prepareStatement(sql);
-            
             ps.setString(1, carro.getCor());
             ps.setString(2, carro.getDescricao());
             ps.setString(3, carro.getPlaca());
             
             if(ps.executeUpdate() > 0){
-                return "Alterado com sucesso.";
+                return "Alterado com sucesso";
+            }else{
+                return "Erro ao alterar";
             }
-            else{
-                return "Erro ao alterar.";
-            }
+            
+        }catch(SQLException e){
+            return e.getMessage();
         }
-        catch(SQLException e){
-                return e.getMessage();
-            }
+        
     }
     
     public String excluir(CarroBean carro){
-        String sql = "delete from carro where placa = ?";
+        String sql = "delete carro where placa = ? ";
+
         
         try{
             PreparedStatement ps = getCon().prepareStatement(sql);
-            
             ps.setString(1, carro.getPlaca());
             
+            
             if(ps.executeUpdate() > 0){
-                return "Excluído com sucesso.";
+                return "Excluido com sucesso";
+            }else{
+                return "Erro ao excluir";
             }
-            else {
-                return "Erro ao excluir.";
-            }
-        }
-        catch(SQLException e){
+            
+        }catch(SQLException e){
             return e.getMessage();
         }
+        
     }
     
     public List<CarroBean> listarTodos(){
-        String sql = "select *from carro";
-        List<CarroBean> listaCarro= new ArrayList<CarroBean>();
+        String sql = "select * from carro ";
+        
+        List<CarroBean> listaCarro = new ArrayList<>();
         
         try{
             PreparedStatement ps = getCon().prepareStatement(sql);
-            
             ResultSet rs = ps.executeQuery();
             
             if(rs != null){
@@ -97,17 +97,16 @@ public class CarroDAO {
                     cb.setDescricao(rs.getString(3));
                     listaCarro.add(cb);
                 }
+                
                 return listaCarro;
-            }
-            else{
+            }else{
                 return null;
             }
-        }
-        catch(SQLException e){
+            
+        }catch(SQLException e){
             return null;
         }
+        
     }
+    
 }
-
-
-
