@@ -20,12 +20,15 @@ public class CarroDAO {
     }
     public String inserir(CarroBean carro){
         String sql = 
-                "insert into carro(placa, cor, descricao) values(?, ?, ?)";
+                "insert into carro(placa, cor, descricao, marca, modelo) values(?, ?, ?, ?, ?)";
         try{
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setString(1, carro.getPlaca());
             ps.setString(2, carro.getCor());
             ps.setString(3, carro.getDescricao());
+            ps.setString(4, carro.getMarca());
+            ps.setString(5, carro.getModelo());
+            
             
             if(ps.executeUpdate() > 0){
                 return "Inserido com sucesso";
@@ -46,6 +49,8 @@ public class CarroDAO {
             ps.setString(1, carro.getCor());
             ps.setString(2, carro.getDescricao());
             ps.setString(3, carro.getPlaca());
+            ps.setString(4, carro.getMarca());
+            ps.setString(5, carro.getModelo());
             
             if(ps.executeUpdate() > 0){
                 return "Alterado com sucesso";
@@ -95,6 +100,8 @@ public class CarroDAO {
                     cb.setPlaca(rs.getString(1));
                     cb.setCor(rs.getString(2));
                     cb.setDescricao(rs.getString(3));
+                    cb.setMarca(rs.getString(4));
+                    cb.setModelo(rs.getString(5));
                     listaCarro.add(cb);
                 }
                 
