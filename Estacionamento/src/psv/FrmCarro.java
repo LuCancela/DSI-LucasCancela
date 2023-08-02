@@ -2,14 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+
+
+// aqui temos o formulario e as conexões que ele tem com cada função dos botões
 package psv;
 
 import javax.swing.table.*;
 import java.sql.*;
 import java.util.*;
 
+// classe do formulario 
 public class FrmCarro extends javax.swing.JFrame {
 
+    // nessa classe será atribuida a ação que cada botão deve fazer
+    
+    
     /**
      * Creates new form FrmCarro
      */
@@ -481,12 +488,15 @@ public class FrmCarro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void btnFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharMouseClicked
         System.exit(0);
     }//GEN-LAST:event_btnFecharMouseClicked
 
     private void btnLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseClicked
         // TODO add your handling code here:
+        
+        // aqui será limpo automaticamente os campos do form
         txPlaca.setText("");
         txCor.setText("");
         txDescricao.setText("");
@@ -501,18 +511,23 @@ public class FrmCarro extends javax.swing.JFrame {
         txPeriodo.setText("");
         txSenha.setText("");
         
+        
+        // esse método recebe todos os valores e suas linhas e então apaga os valores atribuidos ali 
         DefaultTableModel tbm = (DefaultTableModel)tblConsulta.getModel();
         for(int i = tbm.getRowCount ()-1; i >= 0; i--){
             tbm.removeRow(i);
         }
     }//GEN-LAST:event_btnLimparMouseClicked
-
+    
+    // aqui é aplicada uma ação ao botão incluir 
     private void btnIncluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIncluirMouseClicked
-        // TODO add your handling code here
+      
+        // conexão com as outras classes 
         Connection con = Conexao.abrirConexao();
         CarroBean cb = new CarroBean();
         CarroDAO cd = new CarroDAO(con);
         
+        // inclusão de todos os valores recebidos 
         cb.setPlaca(txPlaca.getText());
         cb.setCor(txCor.getText());
         cb.setDescricao(txDescricao.getText());
@@ -533,13 +548,15 @@ public class FrmCarro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIncluirMouseClicked
 
     private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
-        // TODO add your handling code here:
+      
+         // conexão com as outras classes 
         Connection con = Conexao.abrirConexao();
             CarroDAO cd = new CarroDAO(con);
+            //lista os valores da classe bean
             List<CarroBean> listaCarro = new ArrayList<CarroBean>();
-            
             listaCarro = cd.listarTodos();
             
+            // uma consulta de cada linha para encontrar o valor pedido 
             DefaultTableModel tbm = (DefaultTableModel)tblConsulta.getModel();
             for(int i = tbm.getRowCount()-1; i >= 0; i--){
                 tbm.removeRow(i);
@@ -565,7 +582,7 @@ public class FrmCarro extends javax.swing.JFrame {
             Conexao.fecharConexao(con);
     }//GEN-LAST:event_btnPesquisarMouseClicked
 
-    
+    // alterar algum valor 
     private void btnAltererMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltererMouseClicked
         // TODO add your handling code here:
         Connection con = Conexao.abrirConexao();

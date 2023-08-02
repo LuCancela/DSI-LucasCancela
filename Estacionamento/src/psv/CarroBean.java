@@ -4,9 +4,10 @@
  */
 package psv;
 
+//aqui cria a classe bean em que terá acesso e poderá manipular os dados  
 public class CarroBean {
 
-
+    // aqui será criada as váriaveis privadas 
     private String placa;
     private String cor;
     private String descricao;
@@ -20,12 +21,12 @@ public class CarroBean {
     private String periodo;
     private String senha;
            
-    
+    // get de pegar ou seja retornar o valor que foi aplicado , exibir o valor 
     public String getPlaca() 
    {
         return placa;
     }
-
+    // set de enviar um valor, alterar o valor 
     public void setPlaca(String placa){
         this.placa = placa;
     }

@@ -7,9 +7,11 @@ import java.sql.*;
 
 public class Conexao {
     
+    // abrindo a conexão com o banco de dados para que lá seja salva as informações
     public static Connection abrirConexao(){
         Connection con = null;
         try{
+            // aqui realmente é feita a conexão com o banco verificando o programa, o user a senha e estabelecendo a conexão 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
            
             String url = "";
@@ -20,6 +22,7 @@ public class Conexao {
             con = DriverManager.getConnection(url);
             System.out.println("Conexão aberta");
             
+          // nesses catchs será verificado valores caso não sejam confirmados aparecera uma mensagem de erro   
         } catch(SQLException e){
             System.out.println(e.getMessage());
             
@@ -34,6 +37,7 @@ public class Conexao {
         return con;
     }
     
+    // fechar a conexão
     public static void fecharConexao(Connection con){
         try{
             con.close();

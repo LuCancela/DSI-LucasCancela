@@ -7,6 +7,7 @@ package psv;
 import java.sql.*;
 import java.util.*;
 
+// testando para ver se a cone~]ao é estabelecida e consiga fazer ações no banco
 public class Teste {
     public static void main(String[] args) { 
     Connection con = Conexao.abrirConexao(); 
@@ -28,6 +29,7 @@ public class Teste {
     cb.setPeriodo("Manhã");
     cb.setSenha("25");
     
+    // mostra o que aconteceu no método 
     System.out.println(cd.inserir(cb));
     
     cb.setPlaca("8797"); 
@@ -46,7 +48,8 @@ public class Teste {
     System.out.println(cd.alterar(cb));
    
     List<CarroBean> lista = cd.listarTodos();
-    
+        
+        // se a lista for diferente de nula imprima dessa forma os valores 
         if(lista != null){
             for(CarroBean carro : lista){
                 System.out.println("Placa: "+carro.getPlaca());
